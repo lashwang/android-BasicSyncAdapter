@@ -27,6 +27,7 @@ import android.preference.PreferenceManager;
 
 import com.example.android.common.accounts.GenericAccountService;
 import com.example.android.basicsyncadapter.provider.FeedContract;
+import com.example.android.common.logger.Log;
 
 /**
  * Static helper methods for working with the sync framework.
@@ -37,6 +38,8 @@ public class SyncUtils {
     private static final String PREF_SETUP_COMPLETE = "setup_complete";
     // Value below must match the account type specified in res/xml/syncadapter.xml
     public static final String ACCOUNT_TYPE = "com.example.android.basicsyncadapter.account";
+    private static final String TAG = SyncUtils.class.getSimpleName();
+
 
     /**
      * Create an entry for this application in the system account list, if it isn't already there.
@@ -87,6 +90,7 @@ public class SyncUtils {
      * the OS additional freedom in scheduling your sync request.
      */
     public static void TriggerRefresh() {
+        android.util.Log.i(TAG, "TriggerRefresh");
         Bundle b = new Bundle();
         // Disable sync backoff and ignore sync preferences. In other words...perform sync NOW!
         b.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
